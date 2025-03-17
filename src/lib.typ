@@ -163,7 +163,7 @@
     footer: context {
       show: pad.with(top: 12pt, bottom: 12pt)
       
-      let current-page = here().page()
+      let current-page = counter(page).get().first()
       let page-count = counter(page).final().first()
       
       grid(
@@ -171,7 +171,7 @@
         rows: (0.65em, 1fr),
         row-gutter: 12pt,
         
-        if page-count > 1 {
+        if (page-count > 1) {
           if page-numbering == auto {
             if text.lang == "de" {
               align(right)[Seite #current-page von #page-count]
@@ -186,7 +186,7 @@
             panic("Unsupported option type!")
           }
         },
-        
+      
         if current-page == 1 {
           footer
         }
